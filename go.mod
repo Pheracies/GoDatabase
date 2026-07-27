@@ -1,4 +1,4 @@
-module godb
+module github.com/Pheracies/GoDatabase
 
 go 1.26.5
 

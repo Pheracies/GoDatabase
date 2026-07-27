@@ -2,11 +2,21 @@ package go_database
 
 import (
 	"database/sql"
+	_ "embed"
 	"fmt"
 	"os"
 
 	_ "modernc.org/sqlite"
 )
+
+//go:embed sql_functions/create_table.sql
+var createTableSQL string
+
+//go:embed sql_functions/set_data.sql
+var setDataSQL string
+
+//go:embed sql_functions/get_data.sql
+var getDataSQL string
 
 type PropertiesType struct {
 }
@@ -30,12 +40,7 @@ func RegisterDatabase(database string) error {
 		return fmt.Errorf("error opening database: %w", err)
 	}
 
-	createTableSQL, err := os.ReadFile("./src/go_database/sql_functions/create_table.sql")
-	if err != nil {
-		return fmt.Errorf("error reading create_table.sql: %w", err)
-	}
-
-	_, err = db.Exec(string(createTableSQL))
+	_, err = db.Exec(createTableSQL)
 	if err != nil {
 		db.Close()
 		return fmt.Errorf("error creating users table: %w", err)
@@ -51,12 +56,7 @@ func SetData[valType any](database string, key string, value valType) error {
 		return fmt.Errorf("database '%s' is not registered", database)
 	}
 
-	setDataSQL, err := os.ReadFile("./src/go_database/sql_functions/set_data.sql")
-	if err != nil {
-		return fmt.Errorf("error reading set_data.sql: %w", err)
-	}
-
-	_, err = db.Exec(string(setDataSQL), key, value)
+	_, err := db.Exec(setDataSQL, key, value)
 	if err != nil {
 		return fmt.Errorf("error executing set_data: %w", err)
 	}
@@ -70,15 +70,11 @@ func GetData(database string, key string) error {
 		return fmt.Errorf("database '%s' is not registered", database)
 	}
 
-	setDataSQL, err := os.ReadFile("./src/go_database/sql_functions/get_data.sql")
-	if err != nil {
-		return fmt.Errorf("error reading get_data.sql: %w", err)
-	}
-
-	data, err2 := db.Query(string(setDataSQL), key)
+	data, err2 := db.Query(getDataSQL, key)
 	if err2 != nil {
 		return fmt.Errorf("error executing get_data: %w", err2)
 	}
+	defer data.Close()
 
 	for data.Next() {
 		var key, value string
@@ -90,3 +86,4 @@ func GetData(database string, key string) error {
 
 	return nil
 }
+

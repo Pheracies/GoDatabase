@@ -4,7 +4,7 @@ package main
 
 import (
 	"fmt"
-	"godb/src/go_database"
+	"github.com/Pheracies/GoDatabase/src/go_database"
 )
 
 func main() {
