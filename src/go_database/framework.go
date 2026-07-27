@@ -29,7 +29,7 @@ func RegisterDatabase(database string) error {
 		databases = make(map[string]*sql.DB)
 	}
 
-	dir := "./src/databases"
+	dir := "../databases"
 	if err := os.MkdirAll(dir, 0755); err != nil {
 		return fmt.Errorf("error creating directory: %w", err)
 	}
@@ -86,4 +86,3 @@ func GetData(database string, key string) error {
 
 	return nil
 }
-

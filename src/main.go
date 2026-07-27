@@ -4,9 +4,11 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/Pheracies/GoDatabase/src/go_database"
 )
 
+// test
 func main() {
 	fmt.Println("Hello, Go!")
 
@@ -16,7 +18,7 @@ func main() {
 		return
 	}
 
-	err = go_database.SetData("app", "Alice", 5590)
+	err = go_database.SetData("app", "Alice", 3242)
 	if err != nil {
 		fmt.Println("Error setting data:", err)
 		return
