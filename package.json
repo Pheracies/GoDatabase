@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "go": "^3.0.1"
+  },
+  "devDependencies": {
+    "sqlc-cli": "^1.11.5"
+  }
+}
