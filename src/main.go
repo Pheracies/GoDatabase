@@ -1,20 +1,20 @@
 package main
 
+/*
+
 //EXAMPLE CODE
 
-/*import (
+import (
 	"fmt"
 
 	"github.com/Heaplyn/GoDatabase/src/go_database"
-)*/
+)
 
-/*
 type thing struct {
 	Defer bool
-}*/
+}
 
 // test
-/*
 func main() {
 	fmt.Println("Hello, Go!")
 
@@ -45,8 +45,8 @@ func main() {
 		return
 	}
 
-	Thing, err := go_database.GetData[int]("app", "Alice4")
-	fmt.Println(Thing)
+	_, err = go_database.GetData[int]("app", "Alice4")
+	fmt.Println(err)
 	if err != nil {
 		fmt.Println("Error getting data:", err)
 		return
