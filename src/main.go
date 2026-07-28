@@ -5,7 +5,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/Pheracies/GoDatabase/src/go_database"
+	"github.com/Heaplyn/GoDatabase/src/go_database"
 )
 
 // test
