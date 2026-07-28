@@ -1,4 +1,4 @@
-module github.com/Pheracies/GoDatabase
+module github.com/Heaplyn/GoDatabase
 
 go 1.26.5
 
