@@ -1,3 +1,4 @@
 *.db
 /src/databases/
 /src/go_database/databases/
+/src/main.go

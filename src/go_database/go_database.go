@@ -45,7 +45,8 @@ func RegisterDatabase[T any](database string, options *DatabaseOptions[T]) error
 	options = setupDefaultOptions(options)
 
 	dir := "./src/databases"
-	if err := os.MkdirAll(dir, 0755); err != nil {
+	err := os.MkdirAll(dir, 0755)
+	if err != nil {
 		return fmt.Errorf("error creating directory: %w", err)
 	}
 
@@ -118,7 +119,9 @@ func GetData[T any](database string, key string) (T, error) {
 
 	var key2 string
 	var value2 T
-	if err := data.Scan(&key2, &value2); err != nil {
+	var err = data.Scan(&key2, &value2)
+	fmt.Println(err, key2, value2)
+	if err != nil {
 		return zero, fmt.Errorf("error scanning data: %w", err)
 	}
 

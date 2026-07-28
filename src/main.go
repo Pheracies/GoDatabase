@@ -2,17 +2,19 @@ package main
 
 //EXAMPLE CODE
 
-import (
+/*import (
 	"fmt"
 
 	"github.com/Heaplyn/GoDatabase/src/go_database"
-)
+)*/
 
+/*
 type thing struct {
 	Defer bool
-}
+}*/
 
 // test
+/*
 func main() {
 	fmt.Println("Hello, Go!")
 
@@ -59,3 +61,4 @@ func main() {
 
 	fmt.Println("Successfully inserted/updated data for Alice!")
 }
+*/
