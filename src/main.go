@@ -1,7 +1,5 @@
 package main
 
-/*
-
 //EXAMPLE CODE
 
 import (
@@ -61,4 +59,3 @@ func main() {
 
 	fmt.Println("Successfully inserted/updated data for Alice!")
 }
-*/

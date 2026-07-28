@@ -5,6 +5,8 @@ import (
 	_ "embed"
 	"fmt"
 	"os"
+	"path/filepath"
+	"runtime"
 	"strings"
 
 	"github.com/Heaplyn/GoDatabase/src/json_conversion"
@@ -45,7 +47,14 @@ func setupDefaultOptions[T any](options *DatabaseOptions[T]) *DatabaseOptions[T]
 func RegisterDatabase[T any](database string, options *DatabaseOptions[T]) error {
 	options = setupDefaultOptions(options)
 
-	dir := "./src/databases"
+	_, filename, _, ok := runtime.Caller(0)
+	filename = filename[:strings.LastIndex(filename, "/")]
+	if !ok {
+		return fmt.Errorf("cannot get caller info")
+	}
+
+	dir := filepath.Join(filename, "/databases")
+
 	err := os.MkdirAll(dir, 0755)
 	if err != nil {
 		return fmt.Errorf("error creating directory: %w", err)
