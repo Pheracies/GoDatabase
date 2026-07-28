@@ -66,7 +66,7 @@ func SetData[valType any](database string, key string, value valType) error {
 
 func GetData(database string, key string) error {
 	db, exists := databases[database]
-	fmt.Println("9w21")
+	fmt.Println("9wfew21")
 	if !exists {
 		return fmt.Errorf("database '%s' is not registered", database)
 	}
