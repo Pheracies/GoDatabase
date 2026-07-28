@@ -55,7 +55,8 @@ func SetData[valType any](database string, key string, value valType) error {
 	if !exists {
 		return fmt.Errorf("database '%s' is not registered", database)
 	}
-
+	fmt.Println("Key: ", key)
+	fmt.Println("Name: ", value)
 	_, err := db.Exec(setDataSQL, key, value)
 	if err != nil {
 		return fmt.Errorf("error executing set_data: %w", err)
