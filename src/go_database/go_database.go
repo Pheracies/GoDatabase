@@ -5,6 +5,7 @@ import (
 	_ "embed"
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/Heaplyn/GoDatabase/src/json_conversion"
 	_ "modernc.org/sqlite"
@@ -62,7 +63,7 @@ func RegisterDatabase[T any](database string, options *DatabaseOptions[T]) error
 	}
 
 	_, _ = db.Exec("PRAGMA journal_mode=WAL;")
-	_, _ = db.Exec("PRAGMA busy_timeout=5000;")
+	_, _ = db.Exec("PRAGMA busy_timeout=500;")
 
 	currentDatabase := &Database[any]{
 		Options: &DatabaseOptions[any]{
@@ -120,9 +121,9 @@ func GetData[T any](database string, key string) (T, error) {
 	var key2 string
 	var value2 T
 	var err = data.Scan(&key2, &value2)
-	fmt.Println(err, key2, value2)
 	if err != nil {
-		return zero, fmt.Errorf("error scanning data: %w", err)
+		_, ret, _ := strings.Cut(err.Error(), "sql: ")
+		return zero, fmt.Errorf(ret)
 	}
 
 	return value2, nil
