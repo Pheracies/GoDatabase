@@ -1,2 +1,4 @@
-INSERT OR REPLACE INTO users ("key", "value")
-VALUES (?, ?);
+INSERT OR
+REPLACE INTO users ("key", "value")
+VALUES
+    (?, ?);

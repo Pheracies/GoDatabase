@@ -57,7 +57,12 @@ func main() {
 	}
 
 	// 3. Query data by key
-	go_database.GetData("app", "Alice")
+	val, err := go_database.GetData[int]("app", "Alice")
+	if err != nil {
+		fmt.Println("Error getting data:", err)
+		return
+	}
+	fmt.Println("Value:", val)
 }
 ```
 
